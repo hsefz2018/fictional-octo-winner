@@ -15,7 +15,7 @@
 \frame{\titlepage}
 
 \begin{frame}{Problem 1. Robot}
-[Touhou Contest by Nettle, Stage 1 B]
+[Touhou Contest by Nettle, Stage 1 A]
 
 在幻想乡，东风谷早苗是以高达控闻名的高中生宅巫女。某一天，早苗终于入手了最新款的
 钢达姆模型。作为最新的钢达姆，当然有了与以往不同的功能了，那就是它能够自动行走，厉害吧。
@@ -31,6 +31,11 @@
 
 \begin{frame}{Problem 1. Robot}
 
+\begin{itemize}
+    \item 第 1 行：命令串 $S$
+    \item 第 2 行：正整数 $T$
+\end{itemize}
+
 \begin{tabularx}{\textwidth}{|X|X|}
 \hline
 \texttt{\textbf{robot.in}} & \texttt{\textbf{robot.out}} \\ \hline
@@ -41,10 +46,56 @@
 \\ \hline
 \end{tabularx}
 \newline
-\begin{itemize}  
+\begin{itemize}
     \item 60 pts: $|T| \leq 500\,000, |S| \leq 5\,000$
     \item 100 pts: $|T| \leq 2\,000\,000\,000, |S| \leq 5\,000$
-\end{itemize} 
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Problem 2. Ice}
+[Touhou Contest by Nettle, Stage 1 C]
+
+在幻想乡，琪露诺是以笨蛋闻名的冰之妖精。某一天，琪露诺又在玩速冻青蛙，就是用冰把
+青蛙瞬间冻起来。但是这只青蛙比以往的要聪明许多，在琪露诺来之前就已经跑到了河的对
+岸。于是琪露诺决定到河岸去追青蛙。
+
+\end{frame}
+
+\begin{frame}{Problem 2. Ice}
+
+小河可以看作一列格子依次编号为 0 到 $N$，琪露诺只能从编号小的格子移动到编号大的格子。
+而且琪露诺按照一种特殊的方式进行移动，当她在格子 $i$ 时，她只会移动到 $i+L$ 到 $i+R$
+中的一格。你问为什么她这么移动，这还不简单，因为她是笨蛋啊。每一个格子都有一个冰冻指数
+$A_i$，编号为 0 的格子冰冻指数为 0 。当琪露诺停留在那一格时就可以得到那一格的冰冻指数
+$A_i$。琪露诺希望能够在到达对岸时，获取最大的冰冻指数，这样她才能狠狠地教训那只青蛙。
+但是由于她实在是太笨了，所以她决定拜托你帮它决定怎样前进。
+
+开始时，琪露诺在编号 0 的格子上，只要她下一步的位置编号大于 $N$ 就算到达对岸。
+
+\end{frame}
+
+\begin{frame}{Problem 2. Ice}
+
+\begin{itemize}
+    \item 第 1 行：$N$，$L$，$R$
+    \item 第 2 行：$A_i$
+\end{itemize}
+
+\begin{tabularx}{\textwidth}{|X|X|}
+\hline
+\texttt{\textbf{ice.in}} & \texttt{\textbf{ice.out}} \\ \hline
+\texttt{5 2 3}\newline
+\texttt{0 12 3 11 7 -2}
+&
+\texttt{11}
+\\ \hline
+\end{tabularx}
+\newline
+\begin{itemize}
+    \item 60 pts: $N \leq 10\,000$
+    \item 100 pts: $N \leq 200\,000, |A_i| \leq 1000, 1 \leq L \leq R \leq N$
+\end{itemize}
 
 \end{frame}
 
