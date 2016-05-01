@@ -198,13 +198,14 @@
         蒙特卡洛随机大法
 
         \pause
-        时间复杂度 $O(WTF)$，可以得到不知道多少分。
+        时间复杂度 $O(1)$，可以得到不知道多少分。
 \end{itemize}
 
 \end{frame}
 
 \begin{frame}{Solution}
-\detokenize{◡ ヽ(`Д´)ﾉ ┻━┻} 
+(-＿- ||) smg…
+
 \pause
 \begin{itemize}
     \item Algorithm 2 \\
@@ -218,6 +219,43 @@
         \pause
         把边按 $C$ 值从小到大排序，依次编号 $M$ 到 1。 \\
         ↑ 排序不等式
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+\begin{itemize}
+    \item Algorithm 2 \\
+        那……怎么计算 $C_{u, v}$？
+        \pause
+        $$
+            C_{u, v} = \frac{C_u}{\delta(u)} + \frac{C_v}{\delta(v)}
+        $$
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+\begin{itemize}
+    \item Algorithm 2 \\
+        那……怎么计算 $C_u$？
+
+        \pause
+        $$
+            C_{1 \times N} \times G = C
+        $$
+        其中 $G$ 是转移概率矩阵。对于每条边 $(u, v) \in E$，
+        \begin{equation*}
+            G_{u, v} =
+            \begin{cases}
+                0   &\mbox{if $u = N$} \\
+                \frac{1}{\delta(u)}  &\mbox{if $u \neq N$}
+            \end{cases}
+        \end{equation*}
+        例如对于一条 1-2-3-4 的链，
+        $$
+            G = \begin{pmatrix} 0 & 1 & 0 & 0 \\ 1/2 & 0 & 1/2 & 0 \\ 0 & 1/2 & 0 & 1/2 \\ 0 & 0 & 0 & 0 \end{pmatrix}
+        $$
 \end{itemize}
 
 \end{frame}
