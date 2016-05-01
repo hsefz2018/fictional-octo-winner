@@ -24,8 +24,8 @@
 机器人可以按照输入的命令向“E”、“S”、“W”、“N”四个方向进行移动。对于一个命令串，
 每一秒机器人按顺序执行其中一个命令，到结尾处会自动从头循环。
 
-在 0 时刻时早苗将钢达姆放置在了 (0,0) 的位置，并且输入了命令串 $S$。
-她想要知道 $T$ 秒后钢达姆所在的位置坐标。
+在 0 时刻时早苗将机器人放置在了 (0,0) 的位置，并且输入了命令串 $S$。
+她想要知道 $T$ 秒后机器人所在的位置坐标。
 
 \end{frame}
 
@@ -58,6 +58,21 @@
 
 \end{frame}
 
+\begin{frame}{Solution}
+
+→ [NOIP 2014] 生活大爆炸版石头剪刀布
+
+\begin{itemize}
+    \item Algorithm 1 \\
+        直接模拟，时间复杂度 $O(T)$，可以得到 60 分。
+    \item Algorithm 2 \\
+        计算整个串执行一遍之后的坐标变化量。 \\
+        总共执行了 $\lfloor T / |S| \rfloor$ 次整个串，剩余 $T \mod |S|$ 个命令直接模拟。 \\
+        时间复杂度 $O(|S|)$，可以得到 100 分。
+\end{itemize}
+
+\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%% Day 1 B %%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{Problem 2. Ice}
@@ -67,9 +82,9 @@
 
 小河可以看作一列格子，依次编号为 0 到 $N$，开始时琪露诺在编号 0 的格子上。
 因为琪露诺是笨蛋，在格子 $i$ 时，她只会移动到 $[i+L, i+R]$ 中的一格。
-她的位置编号大于 $N$ 时，就算到达对岸（$N$ 以后的格子没有冰冻指数）。
+她的位置编号大于 $N$ 时，就算到达对岸。
 
-每一个格子都有一个冰冻指数 $A_i$。当琪露诺停留在一格时就可以得到那一格的冰冻指数。
+0 到 $N$ 中的每一个格子都有一个冰冻指数 $A_i$。当琪露诺停留在一格时就可以得到那一格的冰冻指数。
 琪露诺希望能够在到达对岸时获取最大的冰冻指数。
 
 \end{frame}
@@ -99,6 +114,22 @@
 \begin{itemize}
     \item 60 pts: $N \leq 10\,000$
     \item 100 pts: $N \leq 200\,000, |A_i| \leq 1000, 1 \leq L \leq R \leq N$
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{itemize}
+    \item Algorithm 1 \\
+        \begin{equation*}
+            f[i] =
+            \begin{cases}
+                \max_{i-R \leq p \leq i-L} \{ f[p] \} + A[i] &\mbox{if $i \geq L$} \\
+                0   &\mbox{if $0 \leq i \le L$}
+            \end{cases}
+        \end{equation*}
+    \item Algorithm 2 \\
 \end{itemize}
 
 \end{frame}
