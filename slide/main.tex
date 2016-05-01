@@ -307,7 +307,7 @@ $N$ 个布丁摆成一行，每个布丁一开始有一种颜色 $A_i$。
 (2) 询问当前一共有多少段颜色，相同连续的颜色算作一段
 
 \begin{itemize}
-    \item 60 pts: $2 \leq N \leq 1\,000$
+    \item 60 pts: $2 \leq N \leq 10\,000$
     \item 100 pts: $2 \leq N \leq 100\,000$，颜色数 $\leq 10^6$
 \end{itemize}
 
@@ -320,6 +320,45 @@ $N$ 个布丁摆成一行，每个布丁一开始有一种颜色 $A_i$。
         暴力模拟。
 
         时间复杂度 $O(N^2)$，可以（在 SH 的评测机上）得到 60 分。
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{itemize}
+    \item Algorithm 2 \\
+        每次修改 $(X \rightarrow Y)$ 对答案产生的影响（减少量） \\
+        = $X$ 与 $Y$ 或 $Y$ 与 $X$ 邻接处的数量
+
+        \pause
+        考虑用某种数据结构 $L_c$ 把一种颜色 $c$ 对应的所有位置都记录下来。每次修改时
+        遍历 $L_X$，检查每一个位置的左右两边颜色是不是 $Y$。最后合并 $L_X$ 和 $L_Y$
+        并更改 $A$ 数组中 $X$ 所有位置的颜色为 $Y$。
+
+        \pause 链表，合并 $O(1)$ \\
+        \pause 遍历/更改颜色 $O(N)$……
+        
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{itemize}
+    \item Algorithm 2 \\
+        * 启发式合并 \\
+        如果一次操作的复杂度是 $O$(短的长度)，那么合并时将短的合并到长的上去 \\
+        每次合并后的大小 $\geq$ 短的大小 $\times 2$，因此合并最多有 $O(\log N)$ 次。
+
+        \pause
+        ${\rm Size}_X \ge {\rm Size}_Y$？ \\
+        数组 \texttt{mapped[c]} 记录查找颜色 $c$ 时真正需要查找的下标。 \\
+        出现 ${\rm Size}_X \ge {\rm Size}_Y$ 时，交换 \texttt{mapped[X]} 和 \texttt{mapped[Y]}。
+
+        \pause
+        每次修改遍历链表长度短的一种颜色，计算答案的减少量，更改 $A$ 和 \texttt{mapped} 数组，合并链表。 \\
+        每次操作 $O$(短的长度)，总时间复杂度 $O(N \log N)$，可以得到 100 分。
 \end{itemize}
 
 \end{frame}
