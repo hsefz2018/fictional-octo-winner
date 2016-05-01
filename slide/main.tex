@@ -363,4 +363,62 @@ $N$ 个布丁摆成一行，每个布丁一开始有一种颜色 $A_i$。
 
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%% Day 2 B %%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Problem 5. Num}
+
+[不知道哪一场模拟赛的题……]
+
+一个数字被称为好数字当它满足下列条件：
+
+(1) 有 $2n$ 个数位，$n$ 是正整数\textbf{（允许有前导 0）}。
+
+(2) 构成它的每个数位都在给定的数字集合 $S$ 中，$S \subseteq \{0,1,\dots,9\}$。
+
+(3) 它前 $n$ 位之和与后 $n$ 位之和相等，或者它奇数位之和与偶数位之和相等
+
+给出 $n$ 和 $S$，求合法的好数字的个数 mod 999983。
+
+\end{frame}
+
+\begin{frame}{Problem 5. Num}
+
+\textbf{输入}
+\begin{itemize}
+    \item 第 1 行：正整数 $N$
+    \item 第 2 行：数字集合 $S$
+\end{itemize}
+\textbf{输出}
+\begin{itemize}
+    \item 第 1 行：合法的好数字的个数 mod 999983。
+\end{itemize}
+
+\begin{tabularx}{\textwidth}{|X|X|}
+\hline
+\texttt{\textbf{num.in}} & \texttt{\textbf{num.out}} \\ \hline
+\texttt{2}\newline
+\texttt{0987654321}
+&
+\texttt{1240}
+\\ \hline
+\end{tabularx}
+\newline
+\begin{itemize}
+    \item 20 pts: $n \leq 7$
+    \item 100 pts: $n \leq 1\,000, |S| \leq 10$
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{itemize}
+    \item Algorithm 1 \\
+        枚举所有的数字并检查。
+
+        时间复杂度 $O(|S|^n \times n)$，可以得到 20 分。
+\end{itemize}
+
+\end{frame}
+
 \end{document}
