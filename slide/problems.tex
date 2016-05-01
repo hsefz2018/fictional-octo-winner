@@ -157,4 +157,56 @@ $A_i$。琪露诺希望能够在到达对岸时，获取最大的冰冻指数，
 
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%% Day 2 A %%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Problem 4. Pudding}
+
+[BZOJ 1483] [HNOI 2009]
+
+$N$ 个布丁摆成一行，每个布丁一开始有一种颜色 $A_i$。
+
+进行 $M$ 次操作，每次操作是下列两种中的一种： \\
+(1) 将某个颜色的布丁全部变成另一种颜色 \\
+(2) 询问当前一共有多少段颜色，相同连续的颜色算作一段
+
+\end{frame}
+
+\begin{frame}{Problem 4. Pudding}
+
+\textbf{输入}
+\begin{itemize}
+    \item 第 1 行：$N$，$M$
+    \item 第 2 行：$N$ 个整数表示初始颜色 $A_{1 \dots N}$
+    \item 接下来 $M$ 行：每行描述一次操作。 \\ “1 $X$ $Y$” 表示把颜色 $X$ 的布丁都变成颜色 $Y$，“2” 表示询问。
+\end{itemize}
+\textbf{输出}
+\begin{itemize}
+    \item 对于每个询问输出一行，表示当前颜色段数。
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Problem 4. Pudding}
+
+\begin{tabularx}{\textwidth}{|X|X|}
+\hline
+\texttt{\textbf{pudding.in}} & \texttt{\textbf{pudding.out}} \\ \hline
+\texttt{4 3}\newline
+\texttt{1 2 2 1}\newline
+\texttt{2}\newline
+\texttt{1 2 1}\newline
+\texttt{2}
+&
+\texttt{3}\newline
+\texttt{1}
+\\ \hline
+\end{tabularx}
+\newline
+\begin{itemize}
+    \item 60 pts: $2 \leq N \leq 1\,000$
+    \item 100 pts: $2 \leq N \leq 100\,000$，颜色数 $\leq 10^6$
+\end{itemize}
+
+\end{frame}
+
 \end{document}

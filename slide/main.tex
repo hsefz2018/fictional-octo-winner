@@ -294,4 +294,34 @@
 
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%% Day 2 A %%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Problem 4. Pudding}
+
+[BZOJ 1483] [HNOI 2009]
+
+$N$ 个布丁摆成一行，每个布丁一开始有一种颜色 $A_i$。
+
+进行 $M$ 次操作，每次操作是下列两种中的一种： \\
+(1) 将某个颜色的布丁全部变成另一种颜色 \\
+(2) 询问当前一共有多少段颜色，相同连续的颜色算作一段
+
+\begin{itemize}
+    \item 60 pts: $2 \leq N \leq 1\,000$
+    \item 100 pts: $2 \leq N \leq 100\,000$，颜色数 $\leq 10^6$
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{itemize}
+    \item Algorithm 1 \\
+        暴力模拟。
+
+        时间复杂度 $O(N^2)$，可以（在 SH 的评测机上）得到 60 分。
+\end{itemize}
+
+\end{frame}
+
 \end{document}
