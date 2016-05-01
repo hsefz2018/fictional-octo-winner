@@ -242,6 +242,22 @@
 
         \pause
         $$
+            C_u^{(i)} = \sum_{\substack{(u, v) \in E \\ v \neq N}} \frac{C_v^{(i - 1)}}{\delta(v)}
+        $$
+        \pause
+        其中 $i$ 表示步数。计算一批 $C^{(i)}$ 的时间复杂度是 $O(E)$。
+
+        总时间复杂度 $O(i \cdot E)=O(i \cdot N^2)$…… \\
+        然而随着 $N$ 的增加，$i$ 需要很大才能满足精度要求，只能得到 30～40 分。
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+\begin{itemize}
+    \item Algorithm 3 \\
+        把 $C$ 看作一个 $1 \times N$ 的矩阵，那么……
+        $$
             C_{1 \times N} \times G = C
         $$
         其中 $G$ 是转移概率矩阵。对于每条边 $(u, v) \in E$，
@@ -256,6 +272,24 @@
         $$
             G = \begin{pmatrix} 0 & 1 & 0 & 0 \\ 1/2 & 0 & 1/2 & 0 \\ 0 & 1/2 & 0 & 1/2 \\ 0 & 0 & 0 & 0 \end{pmatrix}
         $$
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+\begin{itemize}
+    \item Algorithm 3 \\
+        $$
+            C_{1 \times N} \times G = C
+        $$
+        \pause ↑ 线性方程组？ \\
+        \pause ↑ 利用高斯消元在 $O(N^3)$ 时间内解决 \\
+        \pause 至于怎么证明一定有惟一解……= =
+
+        时间复杂度 $O(N^3)$，可以得到……
+        \pause 70 分，因为评测机比较慢……
+
+        \pause 然而这是标算啊 (-。-;
 \end{itemize}
 
 \end{frame}
