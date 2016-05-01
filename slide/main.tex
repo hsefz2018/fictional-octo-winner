@@ -1,4 +1,4 @@
-\documentclass[11pt,UTF8]{beamer}
+\documentclass[UTF8]{beamer}
 
 \usetheme{Madrid}
 \usecolortheme{crane}
@@ -65,6 +65,7 @@
 \begin{itemize}
     \item Algorithm 1 \\
         直接模拟，时间复杂度 $O(T)$，可以得到 60 分。
+    \pause
     \item Algorithm 2 \\
         计算整个串执行一遍之后的坐标变化量。 \\
         总共执行了 $\lfloor T / |S| \rfloor$ 次整个串，剩余 $T \mod |S|$ 个命令直接模拟。 \\
@@ -121,7 +122,9 @@
 \begin{frame}{Solution}
 
 \begin{itemize}
-    \item Algorithm 1 \\
+    \only<1-> {\item Algorithm 1 \\
+        用 $f[i]$ 表示跳到格子 $i$ 并停留所获得的最大冰冻指数。
+        \pause
         \begin{equation*}
             f[i] =
             \begin{cases}
@@ -129,7 +132,16 @@
                 0   &\mbox{if $0 \leq i \le L$}
             \end{cases}
         \end{equation*}
-    \item Algorithm 2 \\
+        \pause
+        $\max_{N-R \leq i \leq N} \{ f[i] \}$ 即为答案。 \\
+        \pause
+        状态数 $O(N)$，转移 $O(N)$，时间复杂度 $O(N^2)$，可以得到 60 分。}
+    \only<1-5> {\uncover<5> {\item Algorithm 2 \\
+        max 部分利用线段树查询，计算出 $f[i]$ 的值后直接插入线段树。 \\
+        转移降为 $O(\log N)$，时间复杂度 $O(N \log N)$，可以得到 100 分。 \\　}}
+    \only<6> {\item Algorithm 3 \\
+        利用单调队列维护 $[i-R, i]$ 之间的 $f$ 值。 \\
+        由于每个 $f$ 只会入队/出队一次，时间复杂度 $O(N)$ \\然而还是只可以得到 100 分}
 \end{itemize}
 
 \end{frame}
