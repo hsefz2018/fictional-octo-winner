@@ -1,0 +1,160 @@
+\documentclass[UTF8]{beamer}
+
+\usetheme{Madrid}
+\usecolortheme{seahorse}
+
+\usepackage[english]{babel}
+\usepackage{ctex}
+\usepackage{algorithm,algorithmic}
+\usepackage{tabularx}
+
+\begin{document}
+
+\title{SHTSC 2016 题目原文}
+\frame{\titlepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%% Day 1 A %%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Problem 1. Robot}
+[Touhou Contest by Nettle, Stage 1 A]
+
+在幻想乡，东风谷早苗是以高达控闻名的高中生宅巫女。某一天，早苗终于入手了最新款的
+钢达姆模型。作为最新的钢达姆，当然有了与以往不同的功能了，那就是它能够自动行走，厉害吧。
+
+早苗的新模型可以按照输入的命令进行移动，命令包含“E”、“S”、“W”、“N”四种，
+分别对应四个不同的方向，依次为东、南、西、北。执行某个命令时，它会向着对应
+方向移动一个单位。作为新型机器人，自然不会只单单执行一个命令，它可以执行命令串。
+对于输入的命令串，每一秒它会按照命令行动一次。而执行完命令串最后一个命令后，会自
+动从头开始循环。在 0 时刻时早苗将钢达姆放置在了 (0,0) 的位置，并且输入了命令串。
+她想要知道 $T$ 秒后钢达姆所在的位置坐标。
+
+\end{frame}
+
+\begin{frame}{Problem 1. Robot}
+
+\textbf{输入}
+\begin{itemize}
+    \item 第 1 行：命令串 $S$
+    \item 第 2 行：正整数 $T$
+\end{itemize}
+\textbf{输出}
+\begin{itemize}
+    \item 第 1 行：结束时的位置 $(X, Y)$
+\end{itemize}
+
+\begin{tabularx}{\textwidth}{|X|X|}
+\hline
+\texttt{\textbf{robot.in}} & \texttt{\textbf{robot.out}} \\ \hline
+\texttt{NSWWNSNEEWN}\newline
+\texttt{12}
+&
+\texttt{-1 3}
+\\ \hline
+\end{tabularx}
+\newline
+\begin{itemize}
+    \item 60 pts: $|T| \leq 500\,000, |S| \leq 5\,000$
+    \item 100 pts: $|T| \leq 2\,000\,000\,000, |S| \leq 5\,000$
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%% Day 1 B %%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Problem 2. Ice}
+[Touhou Contest by Nettle, Stage 1 C]
+
+在幻想乡，琪露诺是以笨蛋闻名的冰之妖精。某一天，琪露诺又在玩速冻青蛙，就是用冰把
+青蛙瞬间冻起来。但是这只青蛙比以往的要聪明许多，在琪露诺来之前就已经跑到了河的对
+岸。于是琪露诺决定到河岸去追青蛙。
+
+\end{frame}
+
+\begin{frame}{Problem 2. Ice}
+
+小河可以看作一列格子依次编号为 0 到 $N$，琪露诺只能从编号小的格子移动到编号大的格子。
+而且琪露诺按照一种特殊的方式进行移动，当她在格子 $i$ 时，她只会移动到 $i+L$ 到 $i+R$
+中的一格。你问为什么她这么移动，这还不简单，因为她是笨蛋啊。每一个格子都有一个冰冻指数
+$A_i$，编号为 0 的格子冰冻指数为 0 。当琪露诺停留在那一格时就可以得到那一格的冰冻指数
+$A_i$。琪露诺希望能够在到达对岸时，获取最大的冰冻指数，这样她才能狠狠地教训那只青蛙。
+但是由于她实在是太笨了，所以她决定拜托你帮它决定怎样前进。
+
+开始时，琪露诺在编号 0 的格子上，只要她下一步的位置编号大于 $N$ 就算到达对岸。
+
+\end{frame}
+
+\begin{frame}{Problem 2. Ice}
+
+\textbf{输入}
+\begin{itemize}
+    \item 第 1 行：三个整数 $N$，$L$，$R$
+    \item 第 2 行：$N+1$ 个整数 $A_{0 \dots N}$
+\end{itemize}
+\textbf{输出}
+\begin{itemize}
+    \item 第 1 行：最大的冰冻指数
+\end{itemize}
+
+\begin{tabularx}{\textwidth}{|X|X|}
+\hline
+\texttt{\textbf{ice.in}} & \texttt{\textbf{ice.out}} \\ \hline
+\texttt{5 2 3}\newline
+\texttt{0 12 3 11 7 -2}
+&
+\texttt{11}
+\\ \hline
+\end{tabularx}
+\newline
+\begin{itemize}
+    \item 60 pts: $N \leq 10\,000$
+    \item 100 pts: $N \leq 200\,000, |A_i| \leq 1000, 1 \leq L \leq R \leq N$
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%% Day 1 C %%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Problem 3. Desired}
+
+[BZOJ 3143] [HNOI 2013]
+
+一个无向连通图，顶点从 1 编号到 $N$，边从 1 编号到 $M$。
+
+小Z在该图上进行随机游走，初始时小Z在 1 号顶点，每一步小Z以相等的概率随机选择当前顶点的某条边，
+沿着这条边走到下一个顶点，获得等于这条边的编号的分数。当小Z到达 $N$ 号顶点时游走结束，总分为所有获得的分数之和。
+现在，请你对这 $M$ 条边进行编号，使得小Z获得的总分的期望值最小。
+
+\end{frame}
+
+\begin{frame}{Problem 3. Desired}
+
+\textbf{输入}
+\begin{itemize}
+    \item 第 1 行：$N$，$M$
+    \item 接下来 $M$ 行：每行描述一条无向边 $u, v$。
+\end{itemize}
+\textbf{输出}
+\begin{itemize}
+    \item 第 1 行：最小的期望值，保留 3 位小数
+\end{itemize}
+
+\begin{tabularx}{\textwidth}{|X|X|}
+\hline
+\texttt{\textbf{desired.in}} & \texttt{\textbf{desired.out}} \\ \hline
+\texttt{3 3}\newline
+\texttt{2 3}\newline
+\texttt{1 2}\newline
+\texttt{1 3}
+&
+\texttt{3.333}
+\\ \hline
+\end{tabularx}
+\newline
+\begin{itemize}
+    \item 30 pts: $2 \leq N \leq 10$
+    \item 100 pts: $2 \leq N \leq 500$
+\end{itemize}
+
+\end{frame}
+
+\end{document}
