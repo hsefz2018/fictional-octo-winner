@@ -7,6 +7,8 @@
 \usepackage{ctex}
 \usepackage{algorithm,algorithmic}
 \usepackage{tabularx}
+\usepackage{graphicx}
+\graphicspath{ {img/} }
 
 \begin{document}
 
@@ -417,6 +419,74 @@ $N$ 个布丁摆成一行，每个布丁一开始有一种颜色 $A_i$。
         枚举所有的数字并检查。
 
         时间复杂度 $O(|S|^n \times n)$，可以得到 20 分。
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{itemize}
+    \item Algorithm 2 \\
+        $A$ = 前 $n$ 位和等于后 $n$ 位和的数字个数 \\
+        $B$ = 奇数位和等于偶数位和的数字个数 \\
+        $C$ = 两个条件都满足的数字个数
+        $$
+            Ans = A + B - C
+        $$
+        \pause
+        $f[x] =$ 用 $S$ 中的数，拼成数位和为 $x$ 的 $n$ 位数的方案数
+        $$
+            A = B = \sum_{x} f[x]^2
+        $$
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+$f[x] =$ 用 $S$ 中的数，拼成数位和为 $x$ 的 $n$ 位数的方案数
+
+\begin{algorithm}[H]
+\begin{algorithmic}[1]
+    \STATE initialize $f$ with 0
+    \STATE $f[0] := 1$
+    \FOR{$i := 1$ to $n$}
+        \FOR{$last := 0$ to $10 n$}
+            \FOR{each $digit \in S$}
+                \STATE increase $f[last + digit]$ by $f[last]$
+            \ENDFOR
+        \ENDFOR
+    \ENDFOR
+\end{algorithmic}
+\caption{$f$ 的背包算法}
+\label{alg:seq}
+\end{algorithm}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{itemize}
+    \item Algorithm 2 \\
+        $f[x] =$ 用 $S$ 中的数，拼成数位和为 $x$ 的 $n$ 位数的方案数
+        \begin{equation*}\begin{split}
+            A = B = \sum_{x} f[x]^2 \\
+            Ans = A + B - C
+        \end{split}\end{equation*}
+        \only<1>{(1) 当 $n$ 为奇数时
+
+        \includegraphics[scale=0.7]{num-n-odd.png}
+
+        $C = A = B =$ 前 $n$ 位和等于后 $n$ 位和的数字个数}
+
+        \only<2>{(2) 当 $n$ 为偶数时
+
+        \includegraphics[scale=0.7]{num-n-even.png}
+
+        $C = \sum_x$ (用 $S$ 中的数，拼成数位和为 $x$ 的 $n/2$ 位数的方案数)$^2$ \\
+        $f$ 背包算法中的 $n$ 改为 $n/2$ 即可}
+
+        \only<3>{时间复杂度 $O(n^2)$，可以得到 100 分。}
 \end{itemize}
 
 \end{frame}
