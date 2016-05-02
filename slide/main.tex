@@ -451,8 +451,8 @@ $f[x] =$ 用 $S$ 中的数，拼成数位和为 $x$ 的 $n$ 位数的方案数
     \STATE initialize $f$ with 0
     \STATE $f[0] := 1$
     \FOR{$i := 1$ to $n$}
-        \FOR{$last := 0$ to $10 n$}
-            \FOR{each $digit \in S$}
+        \FOR{$last := 10 n$ downto $0$}
+            \FORALL{$digit \in S$ in descending order}
                 \STATE increase $f[last + digit]$ by $f[last]$
             \ENDFOR
         \ENDFOR
@@ -486,7 +486,10 @@ $f[x] =$ 用 $S$ 中的数，拼成数位和为 $x$ 的 $n$ 位数的方案数
         $C = \sum_x$ (用 $S$ 中的数，拼成数位和为 $x$ 的 $n/2$ 位数的方案数)$^2$ \\
         $f$ 背包算法中的 $n$ 改为 $n/2$ 即可}
 
-        \only<3>{时间复杂度 $O(n^2)$，可以得到 100 分。}
+        \only<3->{
+            时间复杂度 $O(|S| \times n^2)$，可以得到 100 分。 \\
+            \uncover<4>{然而如果不注意清空内存 \& 及时模 999983 的话……OwO}
+        }
 \end{itemize}
 
 \end{frame}
