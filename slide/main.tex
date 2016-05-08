@@ -494,4 +494,163 @@ $f[x] =$ 用 $S$ 中的数，拼成数位和为 $x$ 的 $n$ 位数的方案数
 
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%% Day 3 A %%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Problem 7. Observer}
+
+给定一棵 $n$ 个节点的无根树，每条边的长度均为 1。
+
+有一种道具，当它放置在一个点上之后，可以监视与这个点距离 $\leq d$ 的所有点
+（包括自己，$d$ 给定）。道具放置在节点 $u$ 上的代价是 $w_u$。
+
+现在给出树上的 $m$（$ \leq n$）个点，求监视所有这些点的最小代价。
+
+\end{frame}
+
+\begin{frame}{Problem 7. Observer}
+
+\begin{tabularx}{\textwidth}{X|X|X|X} \hline
+Case \# & $n$ & $d$ & Rmks \\ \hline \hline
+1       & $\leq 20$       & $\leq 5$  & - \\ \hline
+2, 3    & $\leq 500\,000$ & $= 1$     & - \\ \hline
+4, 5    & $\leq 500\,000$ & $\leq 20$ & $n = m$ \\ \hline
+6, 7, 8 & $\leq 10\,000$  & $\leq 20$ & - \\ \hline
+9, 10   & $\leq 500\,000$ & $\leq 20$ & - \\ \hline
+\end{tabularx}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{tabularx}{\textwidth}{X|X|X|X} \hline
+Case \# & $n$ & $d$ & Rmks \\ \hline \hline
+1       & $\leq 20$       & $\leq 5$  & - \\ \hline
+\end{tabularx}
+\begin{itemize}
+    \item Algorithm 1 \\
+        枚举每个点选或不选，并检查。
+
+        时间复杂度 $O(2^n \times n)$。
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{tabularx}{\textwidth}{X|X|X|X} \hline
+Case \# & $n$ & $d$ & Rmks \\ \hline \hline
+2, 3    & $\leq 500\,000$ & $= 1$     & - \\ \hline
+\end{tabularx}
+\begin{itemize}
+    \item Algorithm 2 \\
+        简单 = = 的树形 DP。
+
+        每个点有三种状态：被某个选中的子节点覆盖、被选、被选中的父节点覆盖。
+
+        自底向上进行计算，反正状态转移方程很简单就是了 QwQ
+
+        时间复杂度 $O(n)$。
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{tabularx}{\textwidth}{X|X|X|X} \hline
+Case \# & $n$ & $d$ & Rmks \\ \hline \hline
+4, 5    & $\leq 500\,000$ & $\leq 20$ & $n = m$ \\ \hline
+6, 7, 8 & $\leq 10\,000$  & $\leq 20$ & - \\ \hline
+9, 10   & $\leq 500\,000$ & $\leq 20$ & - \\ \hline
+\end{tabularx}
+\begin{itemize}
+    \item Algorithm 3 \\
+        树 DP 似乎可以进行到底的样子？
+
+        每个点有三种状态：被子树中的某个节点覆盖、被选、被子树外的某个点覆盖。
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{itemize}
+    \item Algorithm 3 \\
+        对于叶节点 $u$
+        \begin{equation*}\begin{split}
+            f[u][0] = g[u][0] &=
+            \begin{cases}
+                w_u &\mbox{if $u$ is required to be covered} \\
+                0   &\mbox{otherwise}
+            \end{cases} \\
+            f[u][1 \dots d] &= 0 \\
+            g[u][1 \dots d] &= w_u
+        \end{split}\end{equation*}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{itemize}
+    \item Algorithm 3 \\
+        对于非叶节点 $u$
+
+        (1) 一眼看出的 = = 状态转移
+        \begin{equation*}\begin{split}
+            g[u][d] &= w_u + \sum_{v \in {\rm ch}(u)} f[v][d] \\
+            f[u][i] &= \sum_{v \in {\rm ch}(u)} f[v][i - 1]
+        \end{split}\end{equation*}
+
+        \pause
+        (2) 两眼看出的状态转移
+        \begin{equation*}\begin{split}
+            g[u][i] &= g[u][i + 1] \\
+            g[u][i] &= \min_{v \in {\rm ch}(u)}
+                \{g[v][i + 1] + \sum_{\substack{w \in {\rm ch}(u) \\ w \neq v}} f[w][i]\} \\
+        \end{split}\end{equation*}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{itemize}
+    \item Algorithm 3 \\
+        \begin{algorithm}[H]
+        \begin{algorithmic}[1]
+            \STATE $f[u][0] := g[u][0]$
+            \FOR{$i := 1$ to $d$}
+                \STATE $f[u][i] := \min(f[u][i], f[u][i - 1])$
+            \ENDFOR
+            \FOR{$i := d - 1$ downto $0$}
+                \IF{no vertices in $u$'s subtree with distance $\leq i$ are required}
+                    \STATE $f[u][i] := \min(f[u][i], f[u][i + 1])$
+                \ENDIF
+            \ENDFOR
+            \STATE $g[u][0] := f[u][0]$
+        \end{algorithmic}
+        \caption{三眼看出的状态转移}
+        \label{alg:seq}
+        \end{algorithm}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{tabularx}{\textwidth}{X|X|X|X} \hline
+Case \# & $n$ & $d$ & Rmks \\ \hline \hline
+4, 5    & $\leq 500\,000$ & $\leq 20$ & $n = m$ \\ \hline
+6, 7, 8 & $\leq 10\,000$  & $\leq 20$ & - \\ \hline
+9, 10   & $\leq 500\,000$ & $\leq 20$ & - \\ \hline
+\end{tabularx}
+\begin{itemize}
+    \item Algorithm 3 \\
+        每个节点转移的复杂度 $O(|{\rm ch}(u)| \cdot d)$。
+
+        总时间复杂度 $O(n \cdot d)$。
+\end{itemize}
+
+\end{frame}
+
 \end{document}
