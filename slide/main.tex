@@ -819,4 +819,67 @@ Case \# & $N, M$ & $K$ \\ \hline \hline
 
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%% Day 3 C %%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Problem 9. Mark}
+
+THU 的 G 系有 $n$ 位同学和 $m$ 门必修课，分别编号 $0 \dots n - 1$，$0 \dots m - 1$。
+一位同学在必修课 $i$ 上可以获得的分数是 $[1, u_i]$ 中的一个整数。
+
+0 号同学 B 神在第 $i$ 门课上的排名是 $r_i$（i.e. 有且仅有 $r_i - 1$ 门同学
+在这门课上分数\textbf{严格大于} B 神）。
+
+如果每门课上 A 获得的成绩均\textbf{小于等于} B 获得的成绩，则称 A 被 B 碾压。
+G 系一共有恰好 $k$ 位同学被 B 神碾压（不包括 B 神自己）。
+
+求符合 B 神排名和碾压情况的情况数 $\mod 10^9 + 7$。两种情况不同当且仅当
+有任意一位同学在任意一门课上获得的分数不同。同学之间是两两不同的。
+
+\end{frame}
+
+\begin{frame}{Problem 9. Mark}
+
+\begin{tabularx}{\textwidth}{X|X|X|X} \hline
+Case \# & $n$ & $m$ & $u_i$ \\ \hline \hline
+1    & $\leq 3$   & $\leq 3$   & $\leq 4$    \\ \hline
+2    & $\leq 3$   & $\leq 10$  & $\leq 100$  \\ \hline
+3    & $\leq 3$   & $\leq 100$ & $\leq 10^9$ \\ \hline
+4, 5 & $\leq 5$   & $\leq 100$ & $\leq 10^9$ \\ \hline
+6, 7 & $\leq 50$  & $\leq 50$  & $\leq 50$   \\ \hline
+8 \textasciitilde 10 & $\leq 100$ & $\leq 100$ & $\leq 10^9$ \\ \hline
+\end{tabularx}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{tabularx}{\textwidth}{X|X|X|X} \hline
+Case \# & $n$ & $m$ & $u_i$ \\ \hline \hline
+1    & $\leq 3$   & $\leq 3$   & $\leq 4$    \\ \hline
+\end{tabularx}
+\begin{itemize}
+    \item Algorithm 1 \\
+        枚举每个同学在每门课上的分数，并检查是否符合条件。
+
+        时间复杂度 $O({u_{\max}}^{N \cdot M})$。
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{tabularx}{\textwidth}{X|X|X|X} \hline
+Case \# & $n$ & $m$ & $u_i$ \\ \hline \hline
+2    & $\leq 3$   & $\leq 10$  & $\leq 100$  \\ \hline
+\end{tabularx}
+\begin{itemize}
+    \item Algorithm 2 \\
+        由于必修课之间是独立的，枚举 B 神在这门课上的分数，并利用组合学公式计算情况数目。
+        （本烧饼表示也不是很能理解 = =）
+
+        时间复杂度 $O({u_{\max}}^N \cdot M)$。
+\end{itemize}
+
+\end{frame}
+
 \end{document}
