@@ -256,4 +256,71 @@ $N$ 个布丁摆成一行，每个布丁一开始有一种颜色 $A_i$。
 
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%% Day 4 B %%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Problem 11. Rand}
+
+你的面前有 $n$ 个数排成一行，分别为 $a_1, a_2, \dots, a_n$。你打算在每相邻的两个
+$a_i$ 和 $a_{i+1}$ 间都插入一个加号、减号或者乘号。那么一共有 $3^{n-1}$ 种可能的表达式。
+
+你对所有可能的表达式的值的和非常感兴♂趣。但这毕竟太简单了，所以你海打算支持一个修改操作，
+可以修改某个 $a_i$ 的值。
+
+你能够编写一个程序对每个修改都输出修改完之后所有可能表达式的和吗？注意，修改是永久的，也就是说
+每次修改都是在上一次修改的基础上进行，而不是在最初的表达式上进行。
+
+\end{frame}
+
+\begin{frame}{Problem 11. Rand}
+
+\textbf{输入}
+\begin{itemize}
+    \item 第 1 行：两个正整数 $n$ 和 $Q$，为数的个数和询问的个数。
+    \item 第 2 行：$n$ 个非负整数，依次表示 $a_1, a_2, \dots, a_n$。
+    \item 接下来 $Q$ 行：每行两个整数 $t$ 和 $v$，表示要将 $a_t$ 修改为 $v$，其中 $1 \leq t \leq n$。
+\end{itemize}
+\textbf{输出}
+\begin{itemize}
+    \item 对于每个修改输出一行，包含一个整数，表示修改之后所有可能表达式的和，对 $10^9 + 7$ 取模。
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Problem 11. Rand}
+
+\begin{tabularx}{\textwidth}{|X|X|}
+\hline
+\texttt{\textbf{rand.in}} & \texttt{\textbf{rand.out}} \\ \hline
+\texttt{5}\newline
+\texttt{9384 887 2778 6916 7794}\newline
+\texttt{2 8336}\newline
+\texttt{5 493}\newline
+\texttt{3 1422}\newline
+\texttt{1 28}\newline
+\texttt{4 60}
+&
+\texttt{890543652}\newline
+\texttt{252923708}\newline
+\texttt{942282590}\newline
+\texttt{228728040}\newline
+\texttt{608998099}
+\\ \hline
+\end{tabularx}
+\newline
+
+\end{frame}
+
+\begin{frame}{Problem 11. Rand}
+
+\begin{tabularx}{\textwidth}{X|X} \hline
+Case \# & $n, Q$ \\ \hline \hline
+1, 2                 & $\leq 10$       \\ \hline
+3 \textasciitilde 5  & $\leq 1\,000$   \\ \hline
+6 \textasciitilde 10 & $\leq 100\,000$ \\ \hline
+\end{tabularx}
+
+所有的 $a_i$、$v$ 满足 $1 \leq a_i, v \leq 10^4$。
+
+\end{frame}
+
 \end{document}
