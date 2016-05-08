@@ -882,4 +882,78 @@ Case \# & $n$ & $m$ & $u_i$ \\ \hline \hline
 
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%% Day 4 B %%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Problem 11. Rand}
+
+你的面前有 $n$ 个数排成一行，分别为 $a_1, a_2, \dots, a_n$。你打算在每相邻的两个
+$a_i$ 和 $a_{i+1}$ 间都插入一个加号、减号或者乘号。那么一共有 $3^{n-1}$ 种可能的表达式。
+
+进行 $Q$ 次修改操作，每次修改一个 $a_i$ 的值，之后输出所有可能的表达式的和。
+
+\begin{tabularx}{\textwidth}{X|X} \hline
+Case \# & $n, Q$ \\ \hline \hline
+1, 2                 & $\leq 10$       \\ \hline
+3 \textasciitilde 5  & $\leq 1\,000$   \\ \hline
+6 \textasciitilde 10 & $\leq 100\,000$ \\ \hline
+\end{tabularx}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{tabularx}{\textwidth}{X|X} \hline
+Case \# & $n, Q$ \\ \hline \hline
+1, 2                 & $\leq 10$       \\ \hline
+\end{tabularx}
+\begin{itemize}
+    \item Algorithm 1 \\
+        枚举相邻两个数字之间的运算符，并计算表达式的值。
+
+        时间复杂度 $O(3^{n-1} \cdot Q)$。
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{tabularx}{\textwidth}{X|X} \hline
+Case \# & $n, Q$ \\ \hline \hline
+3 \textasciitilde 5  & $\leq 1\,000$   \\ \hline
+\end{tabularx}
+\begin{itemize}
+    \item Algorithm 2 \\
+        \begin{align*}
+            &a_1 \times a_2 \times \dots \times a_k + {\rm Bluh Bluh Bluh} \\
+            &a_1 \times a_2 \times \dots \times a_k - {\rm Bluh Bluh Bluh}
+        \end{align*}
+        \pause
+        $$
+            Ans = \prod_{i = 1}^{n} a_i + \sum_{i = 1}^{n - 1} \left [\left (\prod_{j = 1}^i a_j \right ) \cdot 2 \cdot 3^{n - i - 1}\right ]
+        $$
+
+        直接计算即可，时间复杂度 $O(n \cdot Q)$。
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{tabularx}{\textwidth}{X|X} \hline
+Case \# & $n, Q$ \\ \hline \hline
+6 \textasciitilde 10 & $\leq 100\,000$ \\ \hline
+\end{tabularx}
+\begin{itemize}
+    \item Algorithm 3 \\
+        用线段树维护各种和啊积啊什么的……大家自己 YY 一下就好…… \\
+        时间复杂度 $O(Q \log n)$。\\　\\
+        \pause
+        人群中钻出一个 CZR：“分块大法好 OwO” \\
+        时间复杂度 $O(Q \sqrt n)$。\\
+        \pause
+        然而评测机比较慢。我得去喝杯 82 年的 Java 冷静冷静
+\end{itemize}
+
+\end{frame}
+
 \end{document}
