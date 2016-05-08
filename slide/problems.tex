@@ -7,6 +7,8 @@
 \usepackage{ctex}
 \usepackage{algorithm,algorithmic}
 \usepackage{tabularx}
+\usepackage{graphicx}
+\graphicspath{ {img/} }
 
 \begin{document}
 
@@ -366,7 +368,7 @@ Case \# & $n$ & $d$ & Rmks \\ \hline \hline
 
 \begin{frame}{Problem 8. Square}
 \only<1>{
-\begin{tabularx}{\textwidth}{|X|X|}
+\small{\begin{tabularx}{\textwidth}{|X|X|}
 \hline
 \texttt{\textbf{square.in}} & \texttt{\textbf{square.out}} \\ \hline
 \texttt{2 2 4}\newline
@@ -377,7 +379,9 @@ Case \# & $n$ & $d$ & Rmks \\ \hline \hline
 &
 \texttt{1}
 \\ \hline
-\end{tabularx}
+\end{tabularx}}
+\newline
+\includegraphics[scale=0.85]{square-sample1.png}
 \newline
 ＊如图所示，我们删掉了其中的四个格点，那么剩下的唯一的正方形便是最大的 $2 \times 2$ 的正方形了。}
 
