@@ -653,4 +653,170 @@ Case \# & $n$ & $d$ & Rmks \\ \hline \hline
 
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%% Day 3 B %%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Problem 8. Square}
+
+$N \times M$ 的方格图上一共有 $(N + 1) \times (M + 1)$ 个格点。
+
+上帝删掉了其中 $K$ 个点（坐标给出），我们想知道四个顶点都在剩余格点上的正方形一共有多少个。
+
+注意斜的正方形也包括在内。不计算斜放的情况只能得到 5 分 TAT
+
+\end{frame}
+
+\begin{frame}{Problem 8. Square}
+
+\begin{tabularx}{\textwidth}{X|X|X} \hline
+Case \# & $N, M$ & $K$ \\ \hline \hline
+1, 2   & $\leq 5$    & $\leq 25$            \\ \hline
+3, 4   & $\leq 50$   & $\leq 50$            \\ \hline
+5, 6   & $\leq 10^6$ & $= 0$                \\ \hline
+7, 8   & $\leq 10^6$ & $\leq 50$            \\ \hline
+9, 10  & $\leq 10^6$ & $\leq 200$           \\ \hline
+11, 12 & $\leq 10^3$ & $\leq 2 \times 10^3$ \\ \hline
+13\textasciitilde 20 & $\leq 10^6$ & $\leq 2 \times 10^3$ \\ \hline
+\end{tabularx}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{tabularx}{\textwidth}{X|X|X|X} \hline
+Case \# & $N, M$ & $K$ \\ \hline \hline
+1, 2   & $\leq 5$    & $\leq 25$            \\ \hline
+3, 4   & $\leq 50$   & $\leq 50$            \\ \hline
+\end{tabularx}
+\begin{itemize}
+    \item Algorithm 1 \\
+        枚举四个格点，检查是否是正方形。
+
+        时间复杂度 $O((NM)^4)$。
+
+    \pause\item Algorithm 2 \\
+        枚举两个格点，检查另外两个格点是否被删除。去除重复计算的次数。
+
+        时间复杂度 $O((NM)^2)$。
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{tabularx}{\textwidth}{X|X|X|X} \hline
+Case \# & $N, M$ & $K$ \\ \hline \hline
+5, 6   & $\leq 10^6$ & $= 0$                \\ \hline
+\end{tabularx}
+\begin{itemize}
+    \item Algorithm 3 \\
+        考虑 $M \leq N$ 的情况，否则交换 $M$ 和 $N$。
+
+        \pause
+        用 $x$ 表示正方形的边长。 \\
+        对于每个 $x$，边长为 $x$ 的正方形有 $(M - x + 1)(N - x + 1)$ 个。
+
+        \pause
+        每个边长为 $x$ 的不旋转正方形可以产生 $x$ 个旋转/不旋转的正方形，且不会重复。
+        \begin{align*}
+            F(M, N) &= \sum_{x = 1}^{M} (M - x + 1)(N - x + 1) \cdot x \\
+                    &= (\sum_{x = 1}^{M} x^3) +
+                        (M + N + 2) (\sum_{x = 1}^{M} x^2) +
+                        (MN + M + N + 1) (\sum_{x = 1}^{M} x)
+        \end{align*}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{itemize}
+    \item Algorithm 3 \\
+        \begin{align*}
+            \sum_{x = 1}^{M} x  &= \frac{M(M+1)}{2} \\
+            \sum_{x = 1}^{M} x^2 &= \frac{M(M+1)(2M+1)}{6} \\
+            \sum_{x = 1}^{M} x^3 &= \frac{M^2 \cdot (M+1)^2}{4}
+        \end{align*}
+        \pause
+        预处理时间复杂度 $O(\max(M, N))$，计算时间复杂度 $O(1)$。
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{tabularx}{\textwidth}{X|X|X|X} \hline
+Case \# & $N, M$ & $K$ \\ \hline \hline
+7, 8   & $\leq 10^6$ & $\leq 50$            \\ \hline
+9, 10  & $\leq 10^6$ & $\leq 200$           \\ \hline
+11, 12 & $\leq 10^3$ & $\leq 2 \times 10^3$ \\ \hline
+13\textasciitilde 20 & $\leq 10^6$ & $\leq 2 \times 10^3$ \\ \hline
+\end{tabularx}
+\begin{itemize}
+    \item Algorithm 4 \\
+        $$
+            Ans = F(M, N) - Aff_1 + Aff_2 - Aff_3 + Aff_4
+        $$
+
+        \pause
+        考虑放置在 $(r, c)$ 位置的点影响的正方形数目 $Aff_1(r, c)$。
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{itemize}
+    \item Algorithm 4 \\
+        考虑放置在 $(r, c)$ 位置的点影响的正方形数目 $Aff_1(r, c)$。
+
+        \pause
+        可以转化为：放置在 $(0, c)$ 的点在 $n \times m$ 网格图中影响的正方形个数 $f(n, m, c)$。
+        [TODO: Image]
+
+        %%%\pause
+        %%%\begin{equation*}\begin{split}
+        %%%    Aff_1(r, c) = &f(r, M, c) + f(N - r, M, c) + f(c, N, r) + f(M - c, N, r) \\
+        %%%    \pause
+        %%%        & - (\min(r, c) + \min(r, M - c) + \min(N - r, c) + \min(N - r, M - c))
+        %%%\end{split}\end{equation*}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{itemize}
+    \item Algorithm 4 \\
+        放置在 $(0, c)$ 的点在 $n \times m$ 网格图中影响的正方形个数 $f(n, m, c)$
+
+        $$
+            f(n, m, c) = (\sum_{type = 0}^{\min(c, n)} \min(n - type + 1, m - c + 1)) - 1
+        $$
+
+        计算一个 $f$ 的时间复杂度为 $O(1)$，因此计算一个 $Aff_1$ 的时间复杂度为 $O(1)$。
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{itemize}
+    \item Algorithm 4 \\
+        $Aff_2$，$Aff_3$，$Aff_4$
+
+        \pause 固定两个删除的点，检查另两个点是否被删除。$O(K^2 \cdot {\rm CheckState})$ \\
+        \pause → 二分/\texttt{std::set} 可以把检查从 $O(K)$ 降为 $O(\log K)$ \\
+        \pause 别忘了对角线 \\
+        　\\
+        \pause 总时间复杂度：$O(\max(M, N) + K^2 \log K)$
+        \begin{itemize}
+            \item 预处理阶乘 \& 逆元：$O(\max(M, N))$
+            \item 无坏点的情况 $F$：$O(1)$
+            \item $Aff_1$：$O(1)$
+            \item $Aff_{2 \dots 4}$：$O(K^2 \log K)$
+        \end{itemize}
+\end{itemize}
+
+\end{frame}
+
 \end{document}
