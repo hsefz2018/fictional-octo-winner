@@ -517,6 +517,8 @@ Case \# & $n$ & $d$ & Rmks \\ \hline \hline
 6, 7, 8 & $\leq 10\,000$  & $\leq 20$ & - \\ \hline
 9, 10   & $\leq 500\,000$ & $\leq 20$ & - \\ \hline
 \end{tabularx}
+\\
+$w_u \leq 1\,000 \forall u$
 
 \end{frame}
 
@@ -659,9 +661,10 @@ Case \# & $n$ & $d$ & Rmks \\ \hline \hline
 
 $N \times M$ 的方格图上一共有 $(N + 1) \times (M + 1)$ 个格点。
 
-上帝删掉了其中 $K$ 个点（坐标给出），我们想知道四个顶点都在剩余格点上的正方形一共有多少个。
+上帝删掉了其中 $K$ 个点。给出这些点的坐标，我们想知道四个顶点都在剩余格点上的正方形一共有多少个。
+答案 $\mod 10^8 + 7$。
 
-注意斜的正方形也包括在内。不计算斜放的情况只能得到 5 分 TAT
+注意斜的正方形也包括在内。不计算斜放的情况只能得到 5 分 TAT （来自 wangyurzee 队长的怨念）
 
 \end{frame}
 
@@ -682,7 +685,7 @@ Case \# & $N, M$ & $K$ \\ \hline \hline
 
 \begin{frame}{Solution}
 
-\begin{tabularx}{\textwidth}{X|X|X|X} \hline
+\begin{tabularx}{\textwidth}{X|X|X} \hline
 Case \# & $N, M$ & $K$ \\ \hline \hline
 1, 2   & $\leq 5$    & $\leq 25$            \\ \hline
 3, 4   & $\leq 50$   & $\leq 50$            \\ \hline
@@ -703,7 +706,7 @@ Case \# & $N, M$ & $K$ \\ \hline \hline
 
 \begin{frame}{Solution}
 
-\begin{tabularx}{\textwidth}{X|X|X|X} \hline
+\begin{tabularx}{\textwidth}{X|X|X} \hline
 Case \# & $N, M$ & $K$ \\ \hline \hline
 5, 6   & $\leq 10^6$ & $= 0$                \\ \hline
 \end{tabularx}
@@ -744,7 +747,7 @@ Case \# & $N, M$ & $K$ \\ \hline \hline
 
 \begin{frame}{Solution}
 
-\begin{tabularx}{\textwidth}{X|X|X|X} \hline
+\begin{tabularx}{\textwidth}{X|X|X} \hline
 Case \# & $N, M$ & $K$ \\ \hline \hline
 7, 8   & $\leq 10^6$ & $\leq 50$            \\ \hline
 9, 10  & $\leq 10^6$ & $\leq 200$           \\ \hline
@@ -924,8 +927,8 @@ Case \# & $n, Q$ \\ \hline \hline
 \begin{itemize}
     \item Algorithm 2 \\
         \begin{align*}
-            &a_1 \times a_2 \times \dots \times a_k + {\rm Bluh Bluh Bluh} \\
-            &a_1 \times a_2 \times \dots \times a_k - {\rm Bluh Bluh Bluh}
+            &a_1 \times a_2 \times \dots \times a_k + {\rm Bluh\ Bluh\ Bluh} \\
+            &a_1 \times a_2 \times \dots \times a_k - {\rm Bluh\ Bluh\ Bluh}
         \end{align*}
         \pause
         $$
