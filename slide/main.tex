@@ -773,15 +773,26 @@ Case \# & $N, M$ & $K$ \\ \hline \hline
         考虑放置在 $(r, c)$ 位置的点影响的正方形数目 $Aff_1(r, c)$。
 
         \pause
-        可以转化为：放置在 $(0, c)$ 的点在 $n \times m$ 网格图中影响的正方形个数 $f(n, m, c)$。
-        [TODO: Image]
+        → 放置在 $(0, c)$ 的点在 $n \times m$ 网格图中影响的正方形个数 $f(n, m, c)$。\\　\\
 
-        %%%\pause
-        %%%\begin{equation*}\begin{split}
-        %%%    Aff_1(r, c) = &f(r, M, c) + f(N - r, M, c) + f(c, N, r) + f(M - c, N, r) \\
-        %%%    \pause
-        %%%        & - (\min(r, c) + \min(r, M - c) + \min(N - r, c) + \min(N - r, M - c))
-        %%%\end{split}\end{equation*}
+        \includegraphics[scale=0.8]{square-f.png}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{itemize}
+    \item Algorithm 4 \\
+        放置在 $(0, c)$ 的点在 $n \times m$ 网格图中影响的正方形个数 $f(n, m, c)$ \\　\\
+
+        \includegraphics[scale=0.8]{square-aff1.png}
+
+        \small{
+        \begin{equation*}\begin{split}
+            Aff_1(r, c) = &f(r, M, c) + f(N - r, M, c) + f(c, N, r) + f(M - c, N, r) \\
+                & - (\min(r, c) + \min(r, M - c) + \min(N - r, c) + \min(N - r, M - c))
+        \end{split}\end{equation*}}
 \end{itemize}
 
 \end{frame}
