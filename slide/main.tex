@@ -575,7 +575,7 @@ Case \# & $n$ & $d$ & Rmks \\ \hline \hline
 
 \begin{itemize}
     \item Algorithm 3 \\
-        [TODO: Image]
+        TODO: Image
 \end{itemize}
 
 \end{frame}
@@ -899,6 +899,107 @@ Case \# & $n$ & $m$ & $u_i$ \\ \hline \hline
         （本烧饼表示也不是很能理解 = =）
 
         时间复杂度 $O({u_{\max}}^N \cdot M)$。
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{tabularx}{\textwidth}{X|X|X|X} \hline
+Case \# & $n$ & $m$ & $u_i$ \\ \hline \hline
+2    & $\leq 3$   & $\leq 10$  & $\leq 100$  \\ \hline
+6, 7 & $\leq 50$  & $\leq 50$  & $\leq 50$   \\ \hline
+\end{tabularx}
+\begin{itemize}
+    \item Algorithm 3 \\
+        考虑固定这 $k$ 位被碾压的同学，然后计算答案。最终答案乘以 $\binom{n - 1}{k}$ 即可。
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{itemize}
+    \item Algorithm 3 \\
+        令 $f(k)$ 表示：对于所有的 $Nyan \in Studs\ {\rm s.t.}\ |Nyan| = k$，同学集合 $Nyan$
+        被碾压（其余任意），并满足排名情况的方案数之和。
+
+        \pause
+        \includegraphics[scale=0.66]{mark-inexcl.png}
+        $$
+            Ans = f(k) - f(k + 1) + f(k + 2) - \dots f(N - 1)
+        $$
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{itemize}
+    \item Algorithm 3 \\
+        为方便起见，题目中整体的 $k$ 接下来均写作 $k_0$，$k$ 代表 $f(k)$ 中的自变量。
+
+        \pause
+        \begin{equation*}
+            f(k) =
+            \begin{cases}
+                0   &\mbox{if $\exists i, r[i] + k > n$} \\
+                \binom{n - 1 - k_0}{k - k_0} \cdot
+                \prod_{1 \leq i \leq m}
+                \left( \sum_{x = 1}^{u[i]} x^{n - r[i]} (u[i] - x)^{r[i] - 1} \right)   &\mbox{otherwise}
+            \end{cases}
+        \end{equation*}
+
+        \pause
+        直接枚举 $x$ 并计算即可。\\
+        时间复杂度 $O(n \cdot m \cdot u_{\max})$。
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{tabularx}{\textwidth}{X|X|X|X} \hline
+Case \# & $n$ & $m$ & $u_i$ \\ \hline \hline
+3    & $\leq 3$   & $\leq 100$ & $\leq 10^9$ \\ \hline
+4, 5 & $\leq 5$   & $\leq 100$ & $\leq 10^9$ \\ \hline
+8 \textasciitilde 10 & $\leq 100$ & $\leq 100$ & $\leq 10^9$ \\ \hline
+\end{tabularx}
+\begin{itemize}
+    \item Algorithm 4 \\
+        $$
+            f(k) =
+                \binom{n - 1 - k_0}{k - k_0} \cdot
+                \prod_{1 \leq i \leq m}
+                \left( \sum_{x = 1}^{u[i]} x^{n - r[i]} (u[i] - x)^{r[i] - 1} \right)
+        $$
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{itemize}
+    \item Algorithm 4 \\
+        $$
+            f(k) =
+                \binom{n - 1 - k_0}{k - k_0} \cdot
+                \prod_{1 \leq i \leq m}
+                \left( \sum_{x = 1}^{u[i]} x^{n - r[i]} (u[i] - x)^{r[i] - 1} \right)
+        $$
+
+        \pause (1) 二项式定理 \\
+        \pause
+        (2) $ S(n) = 1^p + 2^p + 3^p + \dots + n^p $
+        是一个 $n + 1$ 次关于 $n$ 的多项式——高斯消元
+
+        \pause 时间复杂度：\begin{itemize}
+            \item 预处理阶乘/逆元 $O(n \log n)$
+            \item 所有的高斯消元 $O(n^3)$
+            \item 所有的 $\prod$ 的计算 $O(m \cdot n^2)$
+            \item 所有的 $f$ 值的计算 $O(m \cdot n)$
+        \end{itemize}
+        合计 $O(n^2 \cdot (m + n))$。
 \end{itemize}
 
 \end{frame}
