@@ -1144,6 +1144,91 @@ Case \# & $n$ \\ \hline \hline
 
 \end{frame}
 
+\begin{frame}{Solution}
+
+\begin{tabularx}{\textwidth}{X|X} \hline
+Case \# & $n$ \\ \hline \hline
+3 \textasciitilde 5  & $\leq 8$  \\ \hline
+6                    & $\leq 10$ \\ \hline
+\end{tabularx}
+\begin{itemize}
+    \item Algorithm 2 \\
+        出题大大说这题有 $O(5^n)$ 或者 $O(4^n)$ 的做法……（并不会）
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{tabularx}{\textwidth}{X|X} \hline
+Case \# & $n$ \\ \hline \hline
+7 \textasciitilde 10 & $\leq 17$ \\ \hline
+\end{tabularx}
+\begin{itemize}
+    \item Algorithm 3 \\
+        Insight: 考虑对于给定的建筑公司集合 $S$，允许让 $S$ 中的每个公司
+        修建任意多（也可以为零）条公路，而其他所有公司都不修建公路时，合法的方案数 $f(S)$
+
+        \pause
+        答案为，每个公司必须修建公路且使图联通的方案数
+        $$
+            Ans = -\sum_{|S| = n} f(S) + \sum_{|S| = n - 1} f(S) - \sum_{|S| = n - 2} f(S) + \dots \sum_{|S| = 0} f(S)
+        $$
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{itemize}
+    \item Algorithm 3 \\
+        “对于给定的建筑公司集合 $S$，允许让 $S$ 中的每个公司
+        修建任意多（也可以为零）条公路，而其他所有公司都不修建公路时，合法的方案数 $f(S)$”
+
+        Kirchhoff 矩阵树定理
+
+        \only<1>{$$
+            \begin{pmatrix} 0 & 1 & 1 & 1 \\ 1 & 0 & 1 & 0 \\ 1 & 1 & 0 & 1 \\ 1 & 0 & 1 & 0 \end{pmatrix}
+            \rightarrow
+            \begin{pmatrix} 3 & -1 & -1 & -1 \\ -1 & 2 & -1 & 0 \\ -1 & -1 & 3 & -1 \\ -1 & 0 & -1 & 2 \end{pmatrix}
+        $$}
+        \pause
+        $$
+            \begin{pmatrix} 3 & -1 & -1 & -1 \\ -1 & 2 & -1 & 0 \\ -1 & -1 & 3 & -1 \\ -1 & 0 & -1 & 2 \end{pmatrix}
+            \rightarrow
+            {\rm SpanningTrees} = \det \begin{pmatrix} 2 & -1 & 0 \\ -1 & 3 & -1 \\ 0 & -1 & 2 \end{pmatrix} = 8
+        $$
+
+        \pause
+        加权形式（两点间有多条边）同样成立 \\
+        证明略去（似乎并不难的样子？？）
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{itemize}
+    \item Algorithm 3 \\
+        “对于给定的建筑公司集合 $S$，允许让 $S$ 中的每个公司
+        修建任意多（也可以为零）条公路，而其他所有公司都不修建公路时，合法的方案数 $f(S)$”
+
+        枚举每个公司选或不选，即遍历所有的 $S$。
+
+        \pause
+        在空图上加入所有 $S$ 中公司能够修建的公路，如果一条公路能被多个公司修建就算多条。\\
+        利用 Kirchhoff 矩阵树定理求解。
+
+        \pause
+        \begin{itemize}
+            \item 遍历 $S$：$O(2^n)$
+            \item 计算生成树数量 = 计算行列式：$O(n^3)$
+        \end{itemize}
+        总时间复杂度：$O(2^n \cdot n^3)$。
+\end{itemize}
+
+\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%% Day 4 B %%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{Problem 11. Rand}
