@@ -494,6 +494,106 @@ $f[x] =$ 用 $S$ 中的数，拼成数位和为 $x$ 的 $n$ 位数的方案数
 
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%% Day 2 C %%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Problem 6. Bridge}
+
+[BZOJ ****] [CQOI 2014]
+
+一个无向图，顶点从 0 编号到 $N - 1$。
+
+有些点之间有双向的桥梁连接。小明希望在点 $a_1$ 到 $a_2$ 之间往返 $a_{\rm n}$ 次，
+小强希望在点 $b_1$ 到 $b_2$ 之间往返 $b_{\rm n}$ 次。
+
+但是有些桥是危桥，在整个过程中只能通过两次，普通桥可以通过无限次。问能否实现两人的愿望。
+
+\end{frame}
+
+\begin{frame}{Problem 6. Bridge}
+
+\textbf{输入}
+\begin{itemize}
+    \item 第 1 行：$N$，$a_1$，$a_2$，$a_{\rm n}$，$b_1$，$b_2$，$b_{\rm n}$
+    \item 接下来 $N$ 行：一个对称矩阵，描述整个图。“O”表示两点之间有一座危桥相连，“N”表示有普通的桥相连，“X”表示没有桥相连。
+\end{itemize}
+\textbf{输出}
+\begin{itemize}
+    \item 第 1 行：最小的期望值，保留 3 位小数
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Problem 6. Bridge}
+
+\begin{tabularx}{\textwidth}{|X|X|}
+\hline
+\texttt{\textbf{bridge.in}} & \texttt{\textbf{bridge.out}} \\ \hline
+\texttt{4 0 1 1 2 3 1}\newline
+\texttt{XOXX}\newline
+\texttt{OXOX}\newline
+\texttt{XOXO}\newline
+\texttt{XXOX}\newline
+\texttt{4 0 2 1 1 3 2}\newline
+\texttt{XNXO}\newline
+\texttt{NXOX}\newline
+\texttt{XOXO}\newline
+\texttt{OXOX}
+&
+\texttt{Yes}\newline
+\texttt{No}
+\\ \hline
+\end{tabularx}
+\newline
+\begin{itemize}
+    \item 100 pts: $4 \leq N \leq 50$，$1 \leq a_{\rm n}, b_{\rm n} \leq 50$
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{itemize}
+    \item Algorithm 1 \\
+        网络流？？
+
+        \pause
+        建立源和汇，从源点向 $a_1, b_1$ 连有向边，容量分别为 $a_{\rm n}, b_{\rm n}$；
+        从 $a_2, b_2$ 向汇点连有向边，容量分别为 $a_{\rm n}, b_{\rm n}$。
+        保留原图所有无向边，容量为最多通行的次数。直接求解最大流。
+
+        \pause
+        　\\
+        “嘛，这样的话就能过掉所有样例了，然后就被坑了。”\\
+        \small{——来自某（科学的）解题报告}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{itemize}
+    \item Algorithm 1 \\
+        　\\
+        \includegraphics[scale=0.35]{bridge-incorrect.png}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{itemize}
+    \item Algorithm 2 \\
+        Insight: 交换 $b_1, b_2$，再求解一次网络流
+
+        \includegraphics[scale=0.2]{bridge-secondflow.png}
+
+        \pause
+        两次均满流即有解。\\
+        时间复杂度：$O({\rm MaxFlow})$
+\end{itemize}
+
+\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%% Day 3 A %%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{Problem 7. Observer}
