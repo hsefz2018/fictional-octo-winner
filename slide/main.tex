@@ -243,9 +243,13 @@
         那……怎么计算 $C_u$？
 
         \pause
-        $$
-            C_u^{(i)} = \sum_{\substack{(u, v) \in E \\ v \neq N}} \frac{C_v^{(i - 1)}}{\delta(v)}
-        $$
+        \begin{equation*}\begin{split}
+            C_u^{(i)} = \sum_{\substack{(u, v) \in E \\ v \neq N}} \frac{C_v^{(i - 1)}}{\delta(v)} \\
+            C_u^{(0)} = \begin{cases}
+                1   &\mbox{if $u = 1$} \\
+                0   &\mbox{if $u \neq 1$}
+            \end{cases}
+        \end{split}\end{equation*}
         \pause
         其中 $i$ 表示步数。计算一批 $C^{(i)}$ 的时间复杂度是 $O(E)$。
 
@@ -260,7 +264,7 @@
     \item Algorithm 3 \\
         把 $C$ 看作一个 $1 \times N$ 的矩阵，那么……
         $$
-            C_{1 \times N} \times G = C
+            C \times G = C + \begin{pmatrix}1 & 0 & 0 & \dots & 0\end{pmatrix}
         $$
         其中 $G$ 是转移概率矩阵。对于每条边 $(u, v) \in E$，
         \begin{equation*}
@@ -282,16 +286,14 @@
 \begin{itemize}
     \item Algorithm 3 \\
         $$
-            C_{1 \times N} \times G = C
+            C \times G = C + \begin{pmatrix}1 & 0 & 0 & \dots & 0\end{pmatrix}
         $$
         \pause ↑ 线性方程组？ \\
         \pause ↑ 利用高斯消元在 $O(N^3)$ 时间内解决 \\
         \pause 至于怎么证明一定有惟一解……= =
 
-        时间复杂度 $O(N^3)$，可以得到……
-        \pause 70 分，因为评测机比较慢……
-
-        \pause 然而这是标算啊 (-。-;
+        时间复杂度 $O(N^3)$，可以得到
+        \pause 70 分……数据精度似乎有些问题？ (-。-;
 \end{itemize}
 
 \end{frame}
