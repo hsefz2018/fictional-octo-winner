@@ -1108,6 +1108,42 @@ Case \# & $n$ & $m$ & $u_i$ \\ \hline \hline
 
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%% Day 4 A %%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Problem 10. Ptree}
+
+风见幽香成为了大选年的黑马，当选了幻想乡的大统领。上台以后的第一项措施就是修建幻想乡的公路。
+
+幻想乡一共有 $n$ 个城市，从 1 到 $n$ 编号。幻想乡还有 $n - 1$ 个建筑公司，每个建筑公司
+有能力修筑某几对城市之间的公路。风见幽香想让这 $n - 1$ 个建筑公司分别负责一条道路的修建，
+并在修建完成之后整个幻想乡所有城市都是联通的。求可行的方案数 $\mod 10^9 + 7$。
+
+　\\
+\begin{tabularx}{\textwidth}{X|X} \hline
+Case \# & $n$ \\ \hline \hline
+1, 2                 & $\leq 5$  \\ \hline
+3 \textasciitilde 5  & $\leq 8$  \\ \hline
+6                    & $\leq 10$ \\ \hline
+7 \textasciitilde 10 & $\leq 17$ \\ \hline
+\end{tabularx}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\begin{tabularx}{\textwidth}{X|X} \hline
+Case \# & $n$ \\ \hline \hline
+1, 2                 & $\leq 5$  \\ \hline
+\end{tabularx}
+\begin{itemize}
+    \item Algorithm 1 \\
+        枚举每个公司分别修建哪条路，并检查是否符合条件。
+
+        时间复杂度 $O(n^n)$。
+\end{itemize}
+
+\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%% Day 4 B %%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{Problem 11. Rand}
