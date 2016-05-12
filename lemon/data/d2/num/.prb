@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<problem type="TRA_0_4" maker="pcdialog">
+    <source dir="num" file="num" code="100">
+        <language cmd="fpc num.pas" file="num.pas"/>
+        <language cmd="g++ -o num num.cpp -lm" file="num.cpp"/>
+        <language cmd="gcc -o num num.c -lm" file="num.c"/>
+    </source>
+    <task output="num.out" input="num.in" checker="全文比较">
+        <subtask score="10">
+            <point in="num1.in" out="num1.out" time="1" mem="128"/>
+        </subtask>
+        <subtask score="10">
+            <point in="num2.in" out="num2.out" time="1" mem="128"/>
+        </subtask>
+        <subtask score="10">
+            <point in="num3.in" out="num3.out" time="1" mem="128"/>
+        </subtask>
+        <subtask score="10">
+            <point in="num4.in" out="num4.out" time="1" mem="128"/>
+        </subtask>
+        <subtask score="10">
+            <point in="num5.in" out="num5.out" time="1" mem="128"/>
+        </subtask>
+        <subtask score="10">
+            <point in="num6.in" out="num6.out" time="1" mem="128"/>
+        </subtask>
+        <subtask score="10">
+            <point in="num7.in" out="num7.out" time="1" mem="128"/>
+        </subtask>
+        <subtask score="10">
+            <point in="num8.in" out="num8.out" time="1" mem="128"/>
+        </subtask>
+        <subtask score="10">
+            <point in="num9.in" out="num9.out" time="1" mem="128"/>
+        </subtask>
+        <subtask score="10">
+            <point in="num10.in" out="num10.out" time="1" mem="128"/>
+        </subtask>
+    </task>
+</problem>
